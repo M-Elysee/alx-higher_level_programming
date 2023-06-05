@@ -1,0 +1,2 @@
+#!/bin/bash
+F=$(mktemp) ; echo "$PYCODE" > "$F" ; python3 "$F" ; rm "$F"
