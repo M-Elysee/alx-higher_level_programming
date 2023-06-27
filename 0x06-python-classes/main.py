@@ -6,14 +6,14 @@ my_square_1.my_print()
 
 print("--")
 try:
-    my_square_2 = Square(3, ("a", 1))
+    my_square_2 = Square(3, (1, 1))
     my_square_2.my_print()
 except Exception as e:
     print(e)
 
 print("--")
 
-my_square_3 = Square(3, (3, 0))
+my_square_3 = Square(3, (3, 3))
 my_square_3.my_print()
 
 print("--")
