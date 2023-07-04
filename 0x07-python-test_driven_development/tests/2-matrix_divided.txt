@@ -1,0 +1,61 @@
+>>> matrix_divided = __import__("2-matrix_divided").matrix_divided
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> print(matrix_divided(matrix, 3))
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+>>> matrix = [[3, 6, 9],[12, 15, 18]]
+>>> print(matrix_divided(matrix, 3))
+[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+>>> matrix = [[-3, 6, -9],[12, -15, 18]]
+>>> print(matrix_divided(matrix, 3))
+[[-0.99, 2.0, -2.99], [4.0, -4.99, 6.0]]
+>>> matrix = [[1.1, -2.2, 3.3], [4.4, 5.5, -6.6]]
+>>> print(matrix_divided(matrix, 3))
+[[0.37, -0.72, 1.1], [1.47, 1.83, -2.19]]
+>>> matrix = "hello"
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/vagrant/alx-higher_level_programming/0x07-python-test_driven_development/2-matrix_divided.py", line 9, in matrix_divided
+    raise TypeError("matrix must be a matrix (list of lists) of integers/floats\n")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>> matrix = None
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/vagrant/alx-higher_level_programming/0x07-python-test_driven_development/2-matrix_divided.py", line 9, in matrix_divided
+    raise TypeError("matrix must be a matrix (list of lists) of integers/floats\n")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>> matrix = [[]]
+>>> print(matrix_divided(matrix, 2))
+[[]]
+>>> matrix = []
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/vagrant/alx-higher_level_programming/0x07-python-test_driven_development/2-matrix_divided.py", line 9, in matrix_divided
+    raise TypeError("matrix must be a matrix (list of lists) of integers/floats\n")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix = [[2, "hi", 4], [6, 8, "hi"]]
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/vagrant/alx-higher_level_programming/0x07-python-test_driven_development/2-matrix_divided.py", line 9, in matrix_divided
+    raise TypeError("matrix must be a matrix (list of lists) of integers/floats\n")
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>> matrix = [[2, 5, 4], [6, 8]]
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/vagrant/alx-higher_level_programming/0x07-python-test_driven_development/2-matrix_divided.py", line 13, in matrix_divided
+    raise TypeError("Each row of the matrix must have the same size\n")
+TypeError: Each row of the matrix must have the same size
+
+>>> matrix = [[2, 5, 4], [6, 8, 10]]
+>>> print(matrix_divided(matrix, 0))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/vagrant/alx-higher_level_programming/0x07-python-test_driven_development/2-matrix_divided.py", line 17, in matrix_divided
+    raise ZeroDivisionError("division by zero\n")
+ZeroDivisionError: division by zero
+
