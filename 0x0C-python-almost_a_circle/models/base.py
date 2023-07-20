@@ -2,7 +2,6 @@
 """Base class"""
 import json
 import csv
-"""import turtle"""
 
 
 class Base:
@@ -97,39 +96,3 @@ class Base:
                 return [cls.create(**dic) for dic in list_dicts]
         except IOError:
             return []
-"""
-    @staticmethod
-    def draw(list_rectangles, list_squares):
-        *Draw Rectangles and Squares using the turtle
-        turtes = turtle.Turtle()
-        turtes.screen.bgcolor("#b7312c")
-        turtes.pensize(3)
-        turtes.shape("turtle")
-
-        turtes.color("#ffffff")
-        for r in list_rectangles:
-            turtes.showturtle()
-            turtes.up()
-            turtes.goto(r.x, r.y)
-            turtes.down()
-            for j in range(2):
-                turtes.forward(r.width)
-                turtes.left(90)
-                turtes.forward(r.height)
-                turtes.left(90)
-            turtes.hideturtle()
-
-        turtes.color("#b5e3d8")
-        for s in list_squares:
-            turtes.showturtle()
-            turtes.up()
-            turtes.goto(s.x, s.y)
-            turtes.down()
-            for j in range(2):
-                turtes.forward(s.width)
-                turtes.left(90)
-                turtes.forward(s.height)
-                turtes.left(90)
-            turtes.hideturtle()
-
-        turtle.exitonclick()"""

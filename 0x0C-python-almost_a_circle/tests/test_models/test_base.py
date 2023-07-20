@@ -108,51 +108,51 @@ class TestBase_instantiation(unittest.TestCase):
 class TestBase_to_json_string(unittest.TestCase):
     """Unittests for testing to_json_string method of Base class."""
 
-    def test_to_json_string_rectangle_type(self):
+    def test_tojsonstringrectangletype(self):
         r = Rectangle(10, 7, 2, 8, 6)
         self.assertEqual(str, type(Base.to_json_string([r.to_dictionary()])))
 
-    def test_to_json_string_rectangle_one_dict(self):
+    def test_to_json_string_rectangleonedict(self):
         r = Rectangle(10, 7, 2, 8, 6)
         self.assertTrue(len(Base.to_json_string([r.to_dictionary()])) == 53)
 
-    def test_to_json_string_rectangle_two_dicts(self):
+    def test_to_json_string_rectangletwodicts(self):
         r1 = Rectangle(2, 3, 5, 19, 2)
         r2 = Rectangle(4, 2, 4, 1, 12)
         list_dicts = [r1.to_dictionary(), r2.to_dictionary()]
         self.assertTrue(len(Base.to_json_string(list_dicts)) == 106)
 
-    def test_to_json_string_square_type(self):
+    def test_to_json_stringsquaretype(self):
         s = Square(10, 2, 3, 4)
         self.assertEqual(str, type(Base.to_json_string([s.to_dictionary()])))
 
-    def test_to_json_string_square_one_dict(self):
+    def test_to_json_stringsquareonedict(self):
         s = Square(10, 2, 3, 4)
         self.assertTrue(len(Base.to_json_string([s.to_dictionary()])) == 39)
 
-    def test_to_json_string_square_two_dicts(self):
+    def test_to_json_string_square_twodicts(self):
         s1 = Square(10, 2, 3, 4)
         s2 = Square(4, 5, 21, 2)
         list_dicts = [s1.to_dictionary(), s2.to_dictionary()]
         self.assertTrue(len(Base.to_json_string(list_dicts)) == 78)
 
-    def test_to_json_string_empty_list(self):
+    def test_to_json_string_emptylist(self):
         self.assertEqual("[]", Base.to_json_string([]))
 
-    def test_to_json_string_none(self):
+    def test_to_json_stringnone(self):
         self.assertEqual("[]", Base.to_json_string(None))
 
-    def test_to_json_string_no_args(self):
+    def test_to_json_stringnoargs(self):
         with self.assertRaises(TypeError):
             Base.to_json_string()
 
-    def test_to_json_string_more_than_one_arg(self):
+    def test_to_json_string_morethanonearg(self):
         with self.assertRaises(TypeError):
             Base.to_json_string([], 1)
 
 
 class TestBase_save_to_file(unittest.TestCase):
-    """Unittests for testing save_to_file method of Base class."""
+    """*Unittests for testing save_to_file method of Base class.*"""
 
     @classmethod
     def tearDown(self):
@@ -170,39 +170,39 @@ class TestBase_save_to_file(unittest.TestCase):
         except IOError:
             pass
 
-    def test_save_to_file_one_rectangle(self):
+    def test_save_to_fileonerectangle(self):
         r = Rectangle(10, 7, 2, 8, 5)
         Rectangle.save_to_file([r])
         with open("Rectangle.json", "r") as f:
             self.assertTrue(len(f.read()) == 53)
 
-    def test_save_to_file_two_rectangles(self):
+    def test_save_to_filetworectangles(self):
         r1 = Rectangle(10, 7, 2, 8, 5)
         r2 = Rectangle(2, 4, 1, 2, 3)
         Rectangle.save_to_file([r1, r2])
         with open("Rectangle.json", "r") as f:
             self.assertTrue(len(f.read()) == 105)
 
-    def test_save_to_file_one_square(self):
+    def test_save_to_fileonesquare(self):
         s = Square(10, 7, 2, 8)
         Square.save_to_file([s])
         with open("Square.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
-    def test_save_to_file_two_squares(self):
+    def test_save_to_file_twosquares(self):
         s1 = Square(10, 7, 2, 8)
         s2 = Square(8, 1, 2, 3)
         Square.save_to_file([s1, s2])
         with open("Square.json", "r") as f:
             self.assertTrue(len(f.read()) == 77)
 
-    def test_save_to_file_cls_name_for_filename(self):
+    def test_save_to_file_clsnameforfilename(self):
         s = Square(10, 7, 2, 8)
         Base.save_to_file([s])
         with open("Base.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
-    def test_save_to_file_overwrite(self):
+    def test_save_to_fileoverwrite(self):
         s = Square(9, 2, 39, 2)
         Square.save_to_file([s])
         s = Square(10, 7, 2, 8)
@@ -210,21 +210,21 @@ class TestBase_save_to_file(unittest.TestCase):
         with open("Square.json", "r") as f:
             self.assertTrue(len(f.read()) == 39)
 
-    def test_save_to_file_None(self):
+    def test_save_to_fileNone(self):
         Square.save_to_file(None)
         with open("Square.json", "r") as f:
             self.assertEqual("[]", f.read())
 
-    def test_save_to_file_empty_list(self):
+    def test_save_to_fileemptylist(self):
         Square.save_to_file([])
         with open("Square.json", "r") as f:
             self.assertEqual("[]", f.read())
 
-    def test_save_to_file_no_args(self):
+    def test_save_to_filenoargs(self):
         with self.assertRaises(TypeError):
             Rectangle.save_to_file()
 
-    def test_save_to_file_more_than_one_arg(self):
+    def test_save_to_filemorethanonearg(self):
         with self.assertRaises(TypeError):
             Square.save_to_file([], 1)
 
@@ -232,19 +232,19 @@ class TestBase_save_to_file(unittest.TestCase):
 class TestBase_from_json_string(unittest.TestCase):
     """Unittests for testing from_json_string method of Base class."""
 
-    def test_from_json_string_type(self):
+    def test_from_json_stringtype(self):
         list_input = [{"id": 89, "width": 10, "height": 4}]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(list, type(list_output))
 
-    def test_from_json_string_one_rectangle(self):
+    def test_from_json_stringonerectangle(self):
         list_input = [{"id": 89, "width": 10, "height": 4, "x": 7}]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(list_input, list_output)
 
-    def test_from_json_string_two_rectangles(self):
+    def test_from_json_stringtworectangles(self):
         list_input = [
             {"id": 89, "width": 10, "height": 4, "x": 7, "y": 8},
             {"id": 98, "width": 5, "height": 2, "x": 1, "y": 3},
@@ -253,13 +253,13 @@ class TestBase_from_json_string(unittest.TestCase):
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(list_input, list_output)
 
-    def test_from_json_string_one_square(self):
+    def test_from_json_stringonesquare(self):
         list_input = [{"id": 89, "size": 10, "height": 4}]
         json_list_input = Square.to_json_string(list_input)
         list_output = Square.from_json_string(json_list_input)
         self.assertEqual(list_input, list_output)
 
-    def test_from_json_string_two_squares(self):
+    def test_from_json_stringtwosquares(self):
         list_input = [
             {"id": 89, "size": 10, "height": 4},
             {"id": 7, "size": 1, "height": 7}
@@ -268,17 +268,17 @@ class TestBase_from_json_string(unittest.TestCase):
         list_output = Square.from_json_string(json_list_input)
         self.assertEqual(list_input, list_output)
 
-    def test_from_json_string_None(self):
+    def test_from_json_stringNone(self):
         self.assertEqual([], Base.from_json_string(None))
 
-    def test_from_json_string_empty_list(self):
+    def test_from_json_stringemptylist(self):
         self.assertEqual([], Base.from_json_string("[]"))
 
-    def test_from_json_string_no_args(self):
+    def test_from_json_stringnoargs(self):
         with self.assertRaises(TypeError):
             Base.from_json_string()
 
-    def test_from_json_string_more_than_one_arg(self):
+    def test_from_json_stringmorethanonearg(self):
         with self.assertRaises(TypeError):
             Base.from_json_string([], 1)
 
@@ -286,56 +286,56 @@ class TestBase_from_json_string(unittest.TestCase):
 class TestBase_create(unittest.TestCase):
     """Unittests for testing create method of Base class."""
 
-    def test_create_rectangle_original(self):
+    def test_create_rectangleoriginal(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
         self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(r1))
 
-    def test_create_rectangle_new(self):
+    def test_create_rectanglenew(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
         self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(r2))
 
-    def test_create_rectangle_is(self):
+    def test_create_rectangleis(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
         self.assertIsNot(r1, r2)
 
-    def test_create_rectangle_equals(self):
+    def test_create_rectangleequals(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
         self.assertNotEqual(r1, r2)
 
-    def test_create_square_original(self):
+    def test_create_squareoriginal(self):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
         self.assertEqual("[Square] (7) 5/1 - 3", str(s1))
 
-    def test_create_square_new(self):
+    def test_create_squarenew(self):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
         self.assertEqual("[Square] (7) 5/1 - 3", str(s2))
 
-    def test_create_square_is(self):
+    def test_create_squareis(self):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
         self.assertIsNot(s1, s2)
 
-    def test_create_square_equals(self):
+    def test_create_squareequals(self):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
         self.assertNotEqual(s1, s2)
 
 
-class TestBase_load_from_file(unittest.TestCase):
+class TestBase_load_fromfile(unittest.TestCase):
     """Unittests for testing load_from_file_method of Base class."""
 
     @classmethod
@@ -350,53 +350,53 @@ class TestBase_load_from_file(unittest.TestCase):
         except IOError:
             pass
 
-    def test_load_from_file_first_rectangle(self):
+    def test_load_from_filefirstrectangle(self):
         r1 = Rectangle(10, 7, 2, 8, 1)
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file([r1, r2])
         list_rectangles_output = Rectangle.load_from_file()
         self.assertEqual(str(r1), str(list_rectangles_output[0]))
 
-    def test_load_from_file_second_rectangle(self):
+    def test_load_from_filesecondrectangle(self):
         r1 = Rectangle(10, 7, 2, 8, 1)
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file([r1, r2])
         list_rectangles_output = Rectangle.load_from_file()
         self.assertEqual(str(r2), str(list_rectangles_output[1]))
 
-    def test_load_from_file_rectangle_types(self):
+    def test_load_from_filerectangletypes(self):
         r1 = Rectangle(10, 7, 2, 8, 1)
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file([r1, r2])
         output = Rectangle.load_from_file()
         self.assertTrue(all(type(obj) == Rectangle for obj in output))
 
-    def test_load_from_file_first_square(self):
+    def test_load_from_filefirstsquare(self):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file([s1, s2])
         list_squares_output = Square.load_from_file()
         self.assertEqual(str(s1), str(list_squares_output[0]))
 
-    def test_load_from_file_second_square(self):
+    def test_load_from_filesecondsquare(self):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file([s1, s2])
         list_squares_output = Square.load_from_file()
         self.assertEqual(str(s2), str(list_squares_output[1]))
 
-    def test_load_from_file_square_types(self):
+    def test_load_from_filesquaretypes(self):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file([s1, s2])
         output = Square.load_from_file()
         self.assertTrue(all(type(obj) == Square for obj in output))
 
-    def test_load_from_file_no_file(self):
+    def test_load_from_filenofile(self):
         output = Square.load_from_file()
         self.assertEqual([], output)
 
-    def test_load_from_file_more_than_one_arg(self):
+    def test_load_from_filemorethanonearg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file([], 1)
 
@@ -420,39 +420,39 @@ class TestBase_save_to_file_csv(unittest.TestCase):
         except IOError:
             pass
 
-    def test_save_to_file_csv_one_rectangle(self):
+    def test_save_to_file_csvonerectangle(self):
         r = Rectangle(10, 7, 2, 8, 5)
         Rectangle.save_to_file_csv([r])
         with open("Rectangle.csv", "r") as f:
             self.assertTrue("5,10,7,2,8", f.read())
 
-    def test_save_to_file_csv_two_rectangles(self):
+    def test_save_to_file_csvtworectangles(self):
         r1 = Rectangle(10, 7, 2, 8, 5)
         r2 = Rectangle(2, 4, 1, 2, 3)
         Rectangle.save_to_file_csv([r1, r2])
         with open("Rectangle.csv", "r") as f:
             self.assertTrue("5,10,7,2,8\n2,4,1,2,3", f.read())
 
-    def test_save_to_file_csv_one_square(self):
+    def test_save_to_file_csvonesquare(self):
         s = Square(10, 7, 2, 8)
         Square.save_to_file_csv([s])
         with open("Square.csv", "r") as f:
             self.assertTrue("8,10,7,2", f.read())
 
-    def test_save_to_file_csv_two_squares(self):
+    def test_save_to_file_csvtwosquares(self):
         s1 = Square(10, 7, 2, 8)
         s2 = Square(8, 1, 2, 3)
         Square.save_to_file_csv([s1, s2])
         with open("Square.csv", "r") as f:
             self.assertTrue("8,10,7,2\n3,8,1,2", f.read())
 
-    def test_save_to_file__csv_cls_name(self):
+    def test_save_to_file__csvclsname(self):
         s = Square(10, 7, 2, 8)
         Base.save_to_file_csv([s])
         with open("Base.csv", "r") as f:
             self.assertTrue("8,10,7,2", f.read())
 
-    def test_save_to_file_csv_overwrite(self):
+    def test_save_to_file_csvoverwrite(self):
         s = Square(9, 2, 39, 2)
         Square.save_to_file_csv([s])
         s = Square(10, 7, 2, 8)
@@ -460,21 +460,21 @@ class TestBase_save_to_file_csv(unittest.TestCase):
         with open("Square.csv", "r") as f:
             self.assertTrue("8,10,7,2", f.read())
 
-    def test_save_to_file__csv_None(self):
+    def test_save_to_file__csvNone(self):
         Square.save_to_file_csv(None)
         with open("Square.csv", "r") as f:
             self.assertEqual("[]", f.read())
 
-    def test_save_to_file_csv_empty_list(self):
+    def test_save_to_file_csvemptylist(self):
         Square.save_to_file_csv([])
         with open("Square.csv", "r") as f:
             self.assertEqual("[]", f.read())
 
-    def test_save_to_file_csv_no_args(self):
+    def test_save_to_file_csvnoargs(self):
         with self.assertRaises(TypeError):
             Rectangle.save_to_file_csv()
 
-    def test_save_to_file_csv_more_than_one_arg(self):
+    def test_save_to_file_csvmorethanonearg(self):
         with self.assertRaises(TypeError):
             Square.save_to_file_csv([], 1)
 
@@ -494,53 +494,53 @@ class TestBase_load_from_file_csv(unittest.TestCase):
         except IOError:
             pass
 
-    def test_load_from_file_csv_first_rectangle(self):
+    def test_load_from_file_csvfirstrectangle(self):
         r1 = Rectangle(10, 7, 2, 8, 1)
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file_csv([r1, r2])
         list_rectangles_output = Rectangle.load_from_file_csv()
         self.assertEqual(str(r1), str(list_rectangles_output[0]))
 
-    def test_load_from_file_csv_second_rectangle(self):
+    def test_load_from_file_csvsecondrectangle(self):
         r1 = Rectangle(10, 7, 2, 8, 1)
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file_csv([r1, r2])
         list_rectangles_output = Rectangle.load_from_file_csv()
         self.assertEqual(str(r2), str(list_rectangles_output[1]))
 
-    def test_load_from_file_csv_rectangle_types(self):
+    def test_load_from_file_csvrectangletypes(self):
         r1 = Rectangle(10, 7, 2, 8, 1)
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file_csv([r1, r2])
         output = Rectangle.load_from_file_csv()
         self.assertTrue(all(type(obj) == Rectangle for obj in output))
 
-    def test_load_from_file_csv_first_square(self):
+    def test_load_from_file_csvfirstsquare(self):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file_csv([s1, s2])
         list_squares_output = Square.load_from_file_csv()
         self.assertEqual(str(s1), str(list_squares_output[0]))
 
-    def test_load_from_file_csv_second_square(self):
+    def test_load_from_file_csvsecondsquare(self):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file_csv([s1, s2])
         list_squares_output = Square.load_from_file_csv()
         self.assertEqual(str(s2), str(list_squares_output[1]))
 
-    def test_load_from_file_csv_square_types(self):
+    def test_load_from_file_csvsquaretypes(self):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file_csv([s1, s2])
         output = Square.load_from_file_csv()
         self.assertTrue(all(type(obj) == Square for obj in output))
 
-    def test_load_from_file_csv_no_file(self):
+    def test_load_from_file_csvnofile(self):
         output = Square.load_from_file_csv()
         self.assertEqual([], output)
 
-    def test_load_from_file_csv_more_than_one_arg(self):
+    def test_load_from_file_csvmorethanonearg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file_csv([], 1)
 
