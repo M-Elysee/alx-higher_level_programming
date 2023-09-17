@@ -17,4 +17,6 @@ if __name__ == '__main__':
     states = s.query(State).order_by(State.id).first()
     if states:
         print('{}: {}'.format(states.id, states.name))
+    else:
+        print('Nothing')
     s.close()

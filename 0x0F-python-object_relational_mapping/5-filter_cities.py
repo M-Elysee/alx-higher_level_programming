@@ -13,6 +13,8 @@ if __name__ == '__main__':
               =(SELECT states.id FROM states WHERE states.name="{}")'.
               format(sys.argv[4]))
     row = c.fetchall()
+    if not row:
+        print()
     for r in row:
         if r != row[-1]:
             print('{}'.format(r[0]), end=", ")
