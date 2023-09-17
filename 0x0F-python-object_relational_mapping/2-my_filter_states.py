@@ -13,7 +13,6 @@ if __name__ == '__main__':
     c = db.cursor()
     c.execute('SELECT id, name FROM states WHERE name="{}"\
               ORDER BY states.id ASC'.format(sys.argv[4]))
-    row = c.fetchone()
-    while (row):
-        print(row)
-        row = c.fetchone()
+    r = c.fetchall()
+    for c in r:
+        print(c)
