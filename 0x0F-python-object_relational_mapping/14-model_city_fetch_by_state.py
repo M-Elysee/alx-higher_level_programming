@@ -10,12 +10,13 @@ if __name__ == '__main__':
     import sys
     from sqlalchemy.orm import Session
 
-
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1],
-                           sys.argv[2], sys.argv[3]), pool_pre_ping= True)
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
+                           format(sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
     Base.metadata.create_all(engine)
     s = Session(engine)
-    all_obj = s.query(State, City).filter(City.state_id == State.id).order_by(City.id).all()
+    all_obj = s.query(State, City).filter(City.state_id ==
+                                          State.id).order_by(City.id).all()
     for st, c in all_obj:
-        print('{}: ({}) {}'.format(st.name, c.id, c.name)) 
+        print('{}: ({}) {}'.format(st.name, c.id, c.name))
     s.close()
