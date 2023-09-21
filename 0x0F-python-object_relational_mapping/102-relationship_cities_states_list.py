@@ -1,14 +1,13 @@
 #!/usr/bin/python3
-"""a script that lists all State objects, and
-   corresponding City objects, contained in the
-   database passed as argument
+""" a script that lists all City objects from the database
+    passed as argument as well as the user and their password
 """
+import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from relationship_state import Base, State
-import sys
-from relationship_city import City
 from sqlalchemy.schema import Table
+from relationship_city import City
 
 if __name__ == "__main__":
 
@@ -17,9 +16,6 @@ if __name__ == "__main__":
                            pool_pre_ping=True)
     Base.metadata.create_all(engine)
     s = Session(engine)
-    obj = s.query(State).order_by(State.id).all()
-    for o in obj:
-        print("{}: {}".format(o.id, o.name))
-        for city in o.cities:
-            print("    {}: {}".format(city.id, city.name))
+    for c in s.query(City).order_by(City.id).all():
+        print("{}: {} -> {}".format(c.id, c.name, c.state.name))
     s.close()
