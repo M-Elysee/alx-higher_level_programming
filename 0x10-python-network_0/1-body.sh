@@ -1,3 +1,3 @@
 #!/bin/bash
 # a Bash script that takes and sends a GET request to the URL, and displays the body of the response
-curl -sX "$1" -L 200
+curl -sX GET "$1" -L 200
