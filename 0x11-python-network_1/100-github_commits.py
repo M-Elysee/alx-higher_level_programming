@@ -8,8 +8,11 @@ if __name__ == "__main__":
           .format(sys.argv[2], sys.argv[1])
     res = requests.get(url)
     res = res.json()
-    j = 0
-    while (res[j] and j < 10):
-        print("{}: {}".format(res[j].get("sha"),
-              res[j].get("commit").get("author").get("name")))
-        j = j + 1
+    try:
+        j = 0
+        while (j < 10):
+            print("{}: {}".format(res[j].get("sha"),
+                  res[j].get("commit").get("author").get("name")))
+            j = j + 1
+    except IndexError:
+        pass
